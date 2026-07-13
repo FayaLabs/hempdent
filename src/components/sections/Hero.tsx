@@ -10,7 +10,7 @@ export default function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-dr-hiago.png"
+          src="/images/hero-dr-hiago-2.png"
           alt="Dr. Hiago Benevenutti — Cirurgião-Dentista especialista em Cannabis Medicinal"
           className="h-full w-full object-cover object-center"
         />
