@@ -1,39 +1,88 @@
 {
   "manifestVersion": 2,
-  "id": "generated-app",
-  "name": "Generated App",
+  "id": "hempdent",
+  "name": "HempDent",
   "backend": {
     "provider": "mock"
   },
+  "locale": {
+    "default": "pt-BR",
+    "supported": [
+      "pt-BR"
+    ],
+    "currency": "BRL"
+  },
   "surfaces": {
-    "panel": {
-      "scaffold": "admin",
+    "website": {
+      "scaffold": "website",
       "options": {
-        "title": "Project Panel",
-        "description": "Operate launch, config, and diagnostics here, then deep-link into product surfaces instead of mirroring their navigation.",
-        "surfaceRole": "control",
-        "metrics": [],
-        "actions": [
-          {
-            "id": "open-app-surface",
-            "label": "Open app",
-            "targetSurface": "admin",
-            "kind": "deep-link"
+        "title": "HempDent",
+        "description": "Site de consulta canábica do Dr. Hiago Benevenutti. Plugins Fayz curados injetados no layout customizado."
+      },
+      "pages": [
+        {
+          "id": "blog-list",
+          "path": "/blog",
+          "plugin": "blog",
+          "label": "Blog"
+        },
+        {
+          "id": "blog-post",
+          "path": "/blog/:slug",
+          "plugin": "blog",
+          "label": "Artigo"
+        },
+        {
+          "id": "reviews",
+          "path": "/reviews",
+          "plugin": "reputation",
+          "label": "Avaliações"
+        },
+        {
+          "id": "booking",
+          "path": "/agendar",
+          "plugin": "booking",
+          "label": "Agendamento"
+        }
+      ],
+      "plugins": [
+        {
+          "id": "blog",
+          "enabled": true,
+          "package": "@fayz-ai/plugin-blog",
+          "config": {
+            "label": "Blog",
+            "description": "Artigos e conteúdo educativo com autor e SEO."
           }
-        ]
-      },
-      "pages": [],
-      "plugins": []
-    },
-    "admin": {
-      "scaffold": "admin",
-      "options": {
-        "surfaceRole": "product",
-        "title": "App Surface",
-        "description": "Your app's main product experience. App navigation lives here."
-      },
-      "pages": [],
-      "plugins": []
+        },
+        {
+          "id": "reputation",
+          "enabled": true,
+          "package": "@fayz-ai/plugin-reputation",
+          "config": {
+            "label": "Avaliações",
+            "description": "Reviews e reputação dos pacientes."
+          }
+        },
+        {
+          "id": "booking",
+          "enabled": true,
+          "package": "@fayz-ai/plugin-agenda",
+          "config": {
+            "label": "Agendamento",
+            "description": "Fluxo público de agendamento com etapa de pagamento Pix."
+          }
+        },
+        {
+          "id": "payments",
+          "enabled": true,
+          "package": "@fayz-ai/plugin-payments",
+          "config": {
+            "label": "Pagamentos",
+            "description": "Provider de cobrança Pix consumido pelo agendamento."
+          }
+        }
+      ]
     }
   }
 }
