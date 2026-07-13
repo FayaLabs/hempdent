@@ -3,31 +3,10 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Star, CalendarCheck, MapPin, Clock, CreditCard, Instagram } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useReviews, useReviewSummary, type Review } from '@fayz-ai/plugin-reputation/public'
+import { AGENDA_URL } from '@/lib/links'
 
-const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
-
-const reviews = [
-  {
-    name: 'Águida M.',
-    rating: 5,
-    text: 'Atendimento incrível! Dr. Hiago é muito atencioso e explica tudo com muita clareza. Me sinto muito mais segura com o tratamento.',
-    date: 'Janeiro 2025',
-  },
-  {
-    name: 'Fernanda R.',
-    rating: 5,
-    text: 'Nunca imaginei que a cannabis medicinal poderia me ajudar com a dor crônica que sentia. A consulta online foi super prática e eficiente.',
-    date: 'Dezembro 2024',
-  },
-  {
-    name: 'Marcos L.',
-    rating: 5,
-    text: 'Profissional extremamente qualificado. A abordagem humanizada e o conhecimento técnico fazem toda a diferença no tratamento.',
-    date: 'Novembro 2024',
-  },
-]
-
-function ReviewCard({ review, index }: { review: typeof reviews[0]; index: number }) {
+function ReviewCard({ review, index }: { review: Review; index: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
@@ -47,9 +26,9 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-full bg-accent flex items-center justify-center text-primary font-semibold text-sm">
-            {review.name[0]}
+            {review.author[0]}
           </div>
-          <span className="text-sm font-medium text-foreground">{review.name}</span>
+          <span className="text-sm font-medium text-foreground">{review.author}</span>
         </div>
         <span className="text-xs text-muted-foreground">{review.date}</span>
       </div>
@@ -62,6 +41,10 @@ export default function SocialProof() {
   const titleInView = useInView(titleRef, { once: true, margin: '-60px' })
   const ctaRef = useRef(null)
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' })
+
+  // Reviews + aggregate now come from the Fayz reputation plugin (seeded).
+  const { reviews } = useReviews({ limit: 3 })
+  const { summary } = useReviewSummary()
 
   return (
     <>
@@ -85,14 +68,14 @@ export default function SocialProof() {
               <div className="flex items-center gap-1">
                 {[1,2,3,4,5].map(i => <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />)}
               </div>
-              <span className="text-foreground font-semibold text-lg">4.8</span>
-              <span className="text-muted-foreground text-sm">· 123 avaliações</span>
+              <span className="text-foreground font-semibold text-lg">{summary?.average ?? '—'}</span>
+              <span className="text-muted-foreground text-sm">· {summary?.count ?? 0} avaliações</span>
             </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {reviews.map((review, index) => (
-              <ReviewCard key={review.name} review={review} index={index} />
+              <ReviewCard key={review.id} review={review} index={index} />
             ))}
           </div>
 
@@ -106,7 +89,7 @@ export default function SocialProof() {
                 <h3 className="font-heading text-3xl font-bold text-foreground mb-2">Dr. Hiago Benevenutti</h3>
                 <p className="text-primary font-medium mb-4">Cirurgião-Dentista · CRO-SP 166513</p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Especialista em odontologia canábica, Dr. Hiago une formação técnica de excelência com uma abordagem humanizada e integrativa. 
+                  Especialista em odontologia canábica, Dr. Hiago une formação técnica de excelência com uma abordagem humanizada e integrativa.
                   Oferece consultas online para pacientes de todo o Brasil com foco em resultados reais e qualidade de vida.
                 </p>
                 <div className="flex flex-col gap-3 text-sm text-foreground">

@@ -7,6 +7,14 @@ export default {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    // Scan the published Fayz plugin components (their src ships in the npm
+    // tarball) so Tailwind generates the classes they use — blog list/detail,
+    // reviews list, booking widget, auth modal. Without this those plugin-
+    // rendered surfaces get no CSS.
+    "./node_modules/@fayz-ai/plugin-blog/src/**/*.{js,ts,tsx}",
+    "./node_modules/@fayz-ai/plugin-reputation/src/**/*.{js,ts,tsx}",
+    "./node_modules/@fayz-ai/plugin-agenda/src/public/**/*.{js,ts,tsx}",
+    "./node_modules/@fayz-ai/plugin-auth/src/website/**/*.{js,ts,tsx}",
   ],
   prefix: "",
   theme: {

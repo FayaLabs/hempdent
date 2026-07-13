@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+import { AGENDA_URL } from '@/lib/links'
+
 export default function Footer() {
   return (
     <footer className="bg-foreground py-10">
@@ -11,11 +14,11 @@ export default function Footer() {
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">
-            <a href="#beneficios" className="hover:text-white transition-colors">Benefícios</a>
-            <a href="#blog" className="hover:text-white transition-colors">Blog</a>
-            <a href="#sobre" className="hover:text-white transition-colors">Sobre</a>
-            <a href="#contato" className="hover:text-white transition-colors">Contato</a>
-            <a href="https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Agendar</a>
+            <a href="/#beneficios" className="hover:text-white transition-colors">Benefícios</a>
+            <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <a href="/#sobre" className="hover:text-white transition-colors">Sobre</a>
+            <a href="/#contato" className="hover:text-white transition-colors">Contato</a>
+            <a href={AGENDA_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Agendar</a>
           </nav>
 
           <p className="text-white/40 text-xs text-center">
