@@ -1,8 +1,14 @@
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { CalendarCheck, Star } from 'lucide-react'
+import { AGENDA_URL } from '@/lib/links'
 
-const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
+// Dummy patient avatars (random users) for the hero social-proof row.
+const PATIENT_AVATARS = [
+  'https://randomuser.me/api/portraits/men/75.jpg',
+  'https://randomuser.me/api/portraits/women/12.jpg',
+  'https://randomuser.me/api/portraits/men/54.jpg',
+]
 
 export default function Hero() {
   return (
@@ -37,7 +43,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-5xl md:text-6xl font-bold leading-tight text-white mb-5"
           >
-            Saúde bucal com o poder da{' '}
+            Mais qualidade de vida com a{' '}
             <span className="text-green-200">cannabis medicinal</span>
           </motion.h1>
 
@@ -77,8 +83,14 @@ export default function Hero() {
             className="mt-10 flex items-center gap-4"
           >
             <div className="flex -space-x-2">
-              {[1,2,3,4].map(i => (
-                <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-green-300/60 backdrop-blur-sm" />
+              {PATIENT_AVATARS.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  className="h-8 w-8 rounded-full border-2 border-white object-cover"
+                />
               ))}
             </div>
             <div>

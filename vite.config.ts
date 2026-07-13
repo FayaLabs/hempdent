@@ -3,10 +3,13 @@ import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import sourceId from './vite-plugin-source-id'
 
+// Resolves @fayz-ai/* from the published npm packages (node_modules). react +
+// react-router-dom + zustand are deduped so the plugin components share the
+// app's single React/router/store instance (contexts work across the boundary).
 export default defineConfig({
   plugins: [sourceId(), react()],
   resolve: {
-    dedupe: ['react', 'react-dom'],
+    dedupe: ['react', 'react-dom', 'react-router-dom', 'zustand'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       'react': path.resolve(__dirname, './node_modules/react'),
