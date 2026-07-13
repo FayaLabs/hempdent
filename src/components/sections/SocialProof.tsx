@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { Star, CalendarCheck, MapPin, Clock, CreditCard, Instagram } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar'
+const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
 
 const reviews = [
   {

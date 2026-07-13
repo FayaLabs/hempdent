@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { CalendarCheck, Star } from 'lucide-react'
 
-const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar'
+const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
 
 export default function Hero() {
   return (

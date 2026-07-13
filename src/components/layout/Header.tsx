@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Leaf, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
-const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar'
+const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
