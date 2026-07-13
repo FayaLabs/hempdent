@@ -11,8 +11,11 @@
 // ---------------------------------------------------------------------------
 import type { ReactNode } from 'react'
 import { Route } from 'react-router-dom'
-import { createBlogPlugin } from '@fayz-ai/plugin-blog'
-import { createReputationWebsite } from '@fayz-ai/plugin-reputation/public'
+import { createClient } from '@supabase/supabase-js'
+import { setGlobalSupabaseClient } from '@fayz-ai/core'
+import { CreditCard, MapPin, Video } from 'lucide-react'
+import { createBlogPlugin, createMockBlogProvider } from '@fayz-ai/plugin-blog'
+import { createMockReputationProvider, createReputationWebsite } from '@fayz-ai/plugin-reputation/public'
 import { createPublicBookingPlugin } from '@fayz-ai/plugin-agenda/public'
 import { createPublicPaymentPlugin } from '@fayz-ai/plugin-payments/public'
 import { AuthProvider, createMockAuthAdapter } from '@fayz-ai/auth'
@@ -23,12 +26,22 @@ import {
   HEMPDENT_POSTS,
   HEMPDENT_REVIEWS,
   REVIEW_SUMMARY,
-  HEMPDENT_SERVICES,
-  DR_HIAGO,
 } from './seeds'
 
 /** Where the header's "área do cliente" / "Meu painel" links point. */
 export const PANEL_PATH = '/painel'
+
+// --- Supabase (fayz-calendar project) ---------------------------------------
+// Booking is UNMOCKED: services/slots/bookings come from anon-safe views/RPCs
+// scoped by this tenant. The anon key + tenant UUIDs are safe in the bundle.
+export const HEMPDENT_TENANT_ID = '11111111-1111-4111-8111-000000000001'
+export const HEMPDENT_STAFF_ID = '11111111-1111-4111-8111-000000000101'
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+if (supabaseUrl && supabaseAnonKey) {
+  setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
+}
 
 // --- Auth (ONE shared mock adapter — the linchpin) -------------------------
 // The same instance backs <AuthProvider> AND the booking→auth bridge below, so
@@ -37,7 +50,19 @@ export const authAdapter = createMockAuthAdapter()
 
 // --- Plugin instances (seeded; mock providers until a real backend is wired) ---
 
+// Blog/reviews stay on the seed providers. Injected EXPLICITLY because this
+// app now registers a global Supabase client (for booking) — without this,
+// their safe resolvers would pick the not-yet-implemented Supabase stubs.
 const blog = createBlogPlugin({
+  dataProvider: createMockBlogProvider({
+    seed: { posts: HEMPDENT_POSTS },
+    defaultAuthor: {
+      name: 'Thiago',
+      role: 'Cirurgião-Dentista · Odontologia Canábica',
+      avatarUrl: 'https://ksaxihqupvvhdbfqbbwx.supabase.co/storage/v1/object/public/avatars/43ebd04a-a4ff-4738-840d-544ebf4831b6.png?1704878851020',
+      bio: 'Especialista em odontologia canábica, une formação técnica de excelência com uma abordagem humanizada e integrativa.',
+    },
+  }),
   seed: { posts: HEMPDENT_POSTS },
   // Default byline author (Medium-inspired) — applied to posts without their own.
   defaultAuthor: {
@@ -50,6 +75,7 @@ const blog = createBlogPlugin({
 })
 
 const reputation = createReputationWebsite({
+  dataProvider: createMockReputationProvider({ seed: { reviews: HEMPDENT_REVIEWS, summary: REVIEW_SUMMARY } }),
   seed: { reviews: HEMPDENT_REVIEWS, summary: REVIEW_SUMMARY },
   heading: 'O que os pacientes dizem',
 })
@@ -59,10 +85,23 @@ const reputation = createReputationWebsite({
 const payments = createPublicPaymentPlugin({ currency: 'BRL', mock: { autoPayAfterMs: 6000 } })
 
 const booking = createPublicBookingPlugin({
-  professional: DR_HIAGO,
-  services: HEMPDENT_SERVICES,
+  tenantId: HEMPDENT_TENANT_ID,
+  professional: { id: HEMPDENT_STAFF_ID, name: 'Dr. Hiago Benevenutti' },
+  // No static `services`: the catalog comes from Supabase (v_public_services).
   // Dr. Hiago atende segunda a sábado, à tarde.
   workingHours: { daysOfWeek: [1, 2, 3, 4, 5, 6], start: '13:00', end: '19:00' },
+  brand: {
+    name: 'HempDent · Consulta Canábica',
+    tagline: 'Agendamento online seguro · CRO-SP 166513',
+    serviceIcon: Video,
+    serviceMeta: 'Online',
+    featuredBadge: 'Mais procurado',
+    highlights: [
+      { icon: Video, text: 'Consulta 100% online' },
+      { icon: MapPin, text: 'Atende todo o Brasil' },
+      { icon: CreditCard, text: 'Aceitamos Pix' },
+    ],
+  },
   window: { minAdvanceHours: 2, maxAdvanceDays: 21, slotInterval: 30 },
   // Final Pagamento step (Pix). Toggle/tune at instantiation.
   payment: { enabled: true, reservationFeePercent: 100, method: 'pix' },

@@ -3,7 +3,10 @@
   "id": "hempdent",
   "name": "HempDent",
   "backend": {
-    "provider": "mock"
+    "provider": "supabase",
+    "projectRef": "yfxutrkyhydgltakbqle",
+    "tenantId": "11111111-1111-4111-8111-000000000001",
+    "note": "Booking unmocked (fayz-calendar project); blog/reviews/auth/payments still mock."
   },
   "locale": {
     "default": "pt-BR",
