@@ -3,6 +3,16 @@ import { motion } from 'framer-motion'
 import { CalendarCheck, Star } from 'lucide-react'
 import { AGENDA_URL } from '@/lib/links'
 
+// Dummy patient avatars (random users) for the hero social-proof row.
+const PATIENT_AVATARS = [
+  'https://randomuser.me/api/portraits/women/68.jpg',
+  'https://randomuser.me/api/portraits/men/32.jpg',
+  'https://randomuser.me/api/portraits/women/44.jpg',
+  'https://randomuser.me/api/portraits/men/75.jpg',
+  'https://randomuser.me/api/portraits/women/12.jpg',
+  'https://randomuser.me/api/portraits/men/54.jpg',
+]
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -76,8 +86,14 @@ export default function Hero() {
             className="mt-10 flex items-center gap-4"
           >
             <div className="flex -space-x-2">
-              {[1,2,3,4].map(i => (
-                <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-green-300/60 backdrop-blur-sm" />
+              {PATIENT_AVATARS.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  className="h-8 w-8 rounded-full border-2 border-white object-cover"
+                />
               ))}
             </div>
             <div>
