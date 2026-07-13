@@ -1,15 +1,10 @@
-import { Leaf } from 'lucide-react'
-
 export default function Footer() {
   return (
     <footer className="bg-foreground py-10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-              <Leaf className="h-4 w-4 text-white" />
-            </div>
-            <span className="font-heading text-base font-semibold text-white">HempDent</span>
+          <div className="flex items-center">
+            <img src="/images/hempdent-logo.svg" alt="HempDent" className="h-8 w-auto brightness-0 invert" />
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">

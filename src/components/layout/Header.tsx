@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { Leaf, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
 const AGENDA_URL = 'https://pro.quaddro.co/drhiago/agendar/servicos/cxeCtz'
@@ -11,11 +11,8 @@ export default function Header() {
     <header className="absolute top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex items-center justify-between px-6 py-5">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-            <Leaf className="h-5 w-5 text-white" />
-          </div>
-          <span className="font-heading text-lg font-semibold text-white drop-shadow-sm">HempDent</span>
+        <a href="#" className="flex items-center">
+          <img src="/images/hempdent-logo.svg" alt="HempDent" className="h-10 w-auto" />
         </a>
 
         {/* Desktop nav */}
