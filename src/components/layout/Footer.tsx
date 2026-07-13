@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center">
-            <img src="/images/hempdent-logo.svg" alt="HempDent" className="h-8 w-auto brightness-0 invert" />
+            <img src="/images/hempdent-logo-2.svg" alt="HempDent" className="h-8 w-auto brightness-0 invert" />
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/60">

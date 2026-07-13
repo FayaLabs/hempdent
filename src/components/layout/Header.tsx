@@ -12,7 +12,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between px-6 py-5">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <img src="/images/hempdent-logo.svg" alt="HempDent" className="h-10 w-auto" />
+          <img src="/images/hempdent-logo-2.svg" alt="HempDent" className="h-10 w-auto" />
         </a>
 
         {/* Desktop nav */}
