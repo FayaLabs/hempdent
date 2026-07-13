@@ -1,0 +1,39 @@
+{
+  "manifestVersion": 2,
+  "id": "generated-app",
+  "name": "Generated App",
+  "backend": {
+    "provider": "mock"
+  },
+  "surfaces": {
+    "panel": {
+      "scaffold": "admin",
+      "options": {
+        "title": "Project Panel",
+        "description": "Operate launch, config, and diagnostics here, then deep-link into product surfaces instead of mirroring their navigation.",
+        "surfaceRole": "control",
+        "metrics": [],
+        "actions": [
+          {
+            "id": "open-app-surface",
+            "label": "Open app",
+            "targetSurface": "admin",
+            "kind": "deep-link"
+          }
+        ]
+      },
+      "pages": [],
+      "plugins": []
+    },
+    "admin": {
+      "scaffold": "admin",
+      "options": {
+        "surfaceRole": "product",
+        "title": "App Surface",
+        "description": "Your app's main product experience. App navigation lives here."
+      },
+      "pages": [],
+      "plugins": []
+    }
+  }
+}
