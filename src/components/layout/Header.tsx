@@ -10,6 +10,10 @@ import { AGENDA_URL } from '@/lib/links'
 // stays mounted at /agendar (not linked). Auth state comes from the shared mock
 // adapter mounted in src/plugins/website.tsx.
 
+// Client-area (auth) entry point in the header is disabled for now — the plugin
+// stays wired (modal/adapter mounted), just no visible entry. Flip to re-enable.
+const SHOW_CLIENT_AREA = false
+
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -39,7 +43,7 @@ export default function Header() {
 
         {/* Right: auth affordance + CTA */}
         <div className="hidden items-center gap-3 md:flex">
-          {isAuthenticated ? (
+          {SHOW_CLIENT_AREA && (isAuthenticated ? (
             <div className="relative">
               <button
                 type="button"
@@ -77,7 +81,7 @@ export default function Header() {
             >
               Acessar área do cliente
             </button>
-          )}
+          ))}
           <a href={AGENDA_URL} target="_blank" rel="noopener noreferrer">
             <Button className="bg-white text-primary font-semibold hover:bg-white/90 shadow-md px-5">Agendar Consulta</Button>
           </a>
@@ -96,14 +100,14 @@ export default function Header() {
           <Link to="/blog" className="text-sm font-medium text-foreground" onClick={() => setOpen(false)}>Blog</Link>
           <a href="/#sobre" className="text-sm font-medium text-foreground" onClick={() => setOpen(false)}>Sobre</a>
           <a href="/#contato" className="text-sm font-medium text-foreground" onClick={() => setOpen(false)}>Contato</a>
-          {isAuthenticated ? (
+          {SHOW_CLIENT_AREA && (isAuthenticated ? (
             <>
               <Link to="/painel" className="text-sm font-medium text-foreground" onClick={() => setOpen(false)}>Meu painel ({displayName})</Link>
               <button type="button" onClick={() => { setOpen(false); void signOut() }} className="text-left text-sm font-medium text-destructive">Sair</button>
             </>
           ) : (
             <button type="button" onClick={() => { setOpen(false); openAuthModal() }} className="text-left text-sm font-medium text-foreground">Acessar área do cliente</button>
-          )}
+          ))}
           <a href={AGENDA_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
             <Button className="w-full">Agendar Consulta</Button>
           </a>

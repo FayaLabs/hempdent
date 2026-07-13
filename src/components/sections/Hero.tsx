@@ -43,7 +43,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-5xl md:text-6xl font-bold leading-tight text-white mb-5"
           >
-            Saúde bucal com o poder da{' '}
+            Mais qualidade de vida com a{' '}
             <span className="text-green-200">cannabis medicinal</span>
           </motion.h1>
 
