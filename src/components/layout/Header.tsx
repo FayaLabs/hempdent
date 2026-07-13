@@ -11,8 +11,11 @@ export default function Header() {
     <header className="absolute top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex items-center justify-between px-6 py-5">
         {/* Logo */}
-        <a href="#" className="flex items-center">
-          <img src="/images/hempdent-logo-2.svg" alt="HempDent" className="h-10 w-auto" />
+        <a href="#" className="flex items-center gap-2.5">
+          <img src="/images/hempdent-logo.svg" alt="HempDent" className="h-10 w-auto" />
+          <span className="font-heading font-bold text-white leading-none text-sm tracking-widest">
+            HEMP<br />DENT
+          </span>
         </a>
 
         {/* Desktop nav */}
