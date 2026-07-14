@@ -145,18 +145,15 @@ export function WebsitePluginProvider({ children }: { children: ReactNode }) {
 }
 
 /**
- * Site chrome shared by plugin detail/flow routes. The site Header is absolute +
- * white-text (designed to overlay the home's dark hero), so on light subpages we
- * seat it on a brand-green band — keeps it readable and stops it overlapping
- * content.
+ * Site chrome shared by plugin detail/flow routes. The site Header is fixed +
+ * translucent hemp-paper with dark text (see Header.tsx), so subpages just need
+ * top padding equal to the 74px header height so content clears it.
  */
 export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <div className="relative bg-primary h-20 shrink-0">
-        <Header />
-      </div>
-      <main className="flex-1">{children}</main>
+      <Header />
+      <main className="flex-1 pt-[74px]">{children}</main>
       <Footer />
     </div>
   )
