@@ -29,8 +29,52 @@ export default {
       fontFamily: {
         heading: "var(--font-heading)",
         body: "var(--font-body)",
+        serif: "var(--font-serif)",
       },
       colors: {
+        // Brand ramps (raw hex via CSS vars — expressive utilities for the
+        // Hemp Dent surfaces: bg-pine-900, text-resin-500, bg-hemp-50, etc.)
+        hemp: {
+          50: "var(--hemp-50)",
+          100: "var(--hemp-100)",
+          200: "var(--hemp-200)",
+          300: "var(--hemp-300)",
+          400: "var(--hemp-400)",
+        },
+        ink: {
+          300: "var(--ink-300)",
+          400: "var(--ink-400)",
+          500: "var(--ink-500)",
+          700: "var(--ink-700)",
+          800: "var(--ink-800)",
+          900: "var(--ink-900)",
+        },
+        pine: {
+          100: "var(--pine-100)",
+          200: "var(--pine-200)",
+          300: "var(--pine-300)",
+          400: "var(--pine-400)",
+          500: "var(--pine-500)",
+          600: "var(--pine-600)",
+          700: "var(--pine-700)",
+          800: "var(--pine-800)",
+          900: "var(--pine-900)",
+        },
+        resin: {
+          100: "var(--resin-100)",
+          300: "var(--resin-300)",
+          400: "var(--resin-400)",
+          500: "var(--resin-500)",
+          600: "var(--resin-600)",
+          700: "var(--resin-700)",
+        },
+        clay: {
+          100: "var(--clay-100)",
+          300: "var(--clay-300)",
+          500: "var(--clay-500)",
+          600: "var(--clay-600)",
+          700: "var(--clay-700)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,6 +123,15 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "2xl": "1.625rem",
+        "3xl": "2.25rem",
+      },
+      boxShadow: {
+        lift: "var(--shadow-lift)",
+        warm: "0 18px 40px -12px rgba(13, 36, 25, 0.28), 0 4px 12px -6px rgba(15, 30, 23, 0.12)",
+      },
+      transitionTimingFunction: {
+        brand: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       keyframes: {
         "accordion-down": {
