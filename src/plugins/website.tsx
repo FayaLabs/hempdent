@@ -47,7 +47,7 @@ const supabaseUrl =
 const supabaseAnonKey =
   (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ??
   // TODO: fill after pool provisioning (M3)
-  'PENDING_POOL_ANON_KEY'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jYmZlYnJ1aGltbGJ2bHZjenNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MzA1NzksImV4cCI6MjA4OTUwNjU3OX0.AoorRgZzA0aspVHMecbsGZ6w_RBjWb49Rj8MBifI_XQ'
 setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
 
 // --- Auth (ONE shared mock adapter — the linchpin) -------------------------
