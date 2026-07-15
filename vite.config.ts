@@ -50,6 +50,8 @@ export default defineConfig({
   },
   server: {
     host: true,
+    port: 5307,
+    strictPort: true,
     cors: true,
     allowedHosts: true,
     headers: {
