@@ -38,16 +38,20 @@ export const PANEL_PATH = '/painel'
 export const HEMPDENT_TENANT_ID = '11111111-1111-4111-8111-000000000001'
 export const HEMPDENT_STAFF_ID = '11111111-1111-4111-8111-000000000101'
 
-// Hardcoded fallbacks on purpose: the publishable key is public by design and
-// preview containers (fayz editor) don't carry the repo's .env — without them
-// the safe provider silently falls back to an EMPTY mock catalog.
-const supabaseUrl =
-  (import.meta.env.VITE_SUPABASE_URL as string | undefined) ??
-  'https://yfxutrkyhydgltakbqle.supabase.co'
-const supabaseAnonKey =
-  (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ??
-  'sb_publishable_v8rbvLDgnq5IbkVB5B6LxQ_D62mfPZX'
-setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
+// Env-only: NO key material in git. The Fayz editor injects these secrets on
+// deploy; local dev reads them from an untracked .env. When absent, we skip the
+// global client and the safe booking provider degrades to an EMPTY catalog
+// (site still renders; the booking flow shows an unavailable state).
+// Industry pool: cluster-dentist-br-01 (projectRef mcbfebruhimlbvlvczsn).
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+if (supabaseUrl && supabaseAnonKey) {
+  setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
+} else {
+  console.error(
+    '[website] Missing VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY — booking catalog will be unavailable.',
+  )
+}
 
 // --- Auth (ONE shared mock adapter — the linchpin) -------------------------
 // The same instance backs <AuthProvider> AND the booking→auth bridge below, so

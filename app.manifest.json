@@ -4,9 +4,10 @@
   "name": "HempDent",
   "backend": {
     "provider": "supabase",
-    "projectRef": "yfxutrkyhydgltakbqle",
+    "projectRef": "mcbfebruhimlbvlvczsn",
+    "pool": "cluster-dentist-br-01",
     "tenantId": "11111111-1111-4111-8111-000000000001",
-    "note": "Booking unmocked (fayz-calendar project); blog/reviews/auth/payments still mock."
+    "note": "Booking unmocked (industry pool cluster-dentist-br-01); blog/reviews/auth/payments still mock."
   },
   "locale": {
     "default": "pt-BR",
@@ -27,25 +28,29 @@
           "id": "blog-list",
           "path": "/blog",
           "plugin": "blog",
-          "label": "Blog"
+          "label": "Blog",
+          "component": "custom:BlogList"
         },
         {
           "id": "blog-post",
           "path": "/blog/:slug",
           "plugin": "blog",
-          "label": "Artigo"
+          "label": "Artigo",
+          "component": "custom:PostDetail"
         },
         {
           "id": "reviews",
           "path": "/reviews",
           "plugin": "reputation",
-          "label": "Avaliações"
+          "label": "Avaliações",
+          "component": "custom:ReviewsScreen"
         },
         {
           "id": "booking",
           "path": "/agendar",
           "plugin": "booking",
-          "label": "Agendamento"
+          "label": "Agendamento",
+          "component": "custom:BookingScreen"
         }
       ],
       "plugins": [
