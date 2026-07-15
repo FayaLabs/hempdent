@@ -28,25 +28,29 @@
           "id": "blog-list",
           "path": "/blog",
           "plugin": "blog",
-          "label": "Blog"
+          "label": "Blog",
+          "component": "custom:BlogList"
         },
         {
           "id": "blog-post",
           "path": "/blog/:slug",
           "plugin": "blog",
-          "label": "Artigo"
+          "label": "Artigo",
+          "component": "custom:PostDetail"
         },
         {
           "id": "reviews",
           "path": "/reviews",
           "plugin": "reputation",
-          "label": "Avaliações"
+          "label": "Avaliações",
+          "component": "custom:ReviewsScreen"
         },
         {
           "id": "booking",
           "path": "/agendar",
           "plugin": "booking",
-          "label": "Agendamento"
+          "label": "Agendamento",
+          "component": "custom:BookingScreen"
         }
       ],
       "plugins": [
