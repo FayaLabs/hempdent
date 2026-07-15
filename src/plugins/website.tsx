@@ -40,12 +40,14 @@ export const HEMPDENT_STAFF_ID = '11111111-1111-4111-8111-000000000101'
 // Hardcoded fallbacks on purpose: the publishable key is public by design and
 // preview containers (fayz editor) don't carry the repo's .env — without them
 // the safe provider silently falls back to an EMPTY mock catalog.
+// Industry pool: cluster-dentist-br-01 (projectRef mcbfebruhimlbvlvczsn).
 const supabaseUrl =
   (import.meta.env.VITE_SUPABASE_URL as string | undefined) ??
-  'https://yfxutrkyhydgltakbqle.supabase.co'
+  'https://mcbfebruhimlbvlvczsn.supabase.co'
 const supabaseAnonKey =
   (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ??
-  'sb_publishable_v8rbvLDgnq5IbkVB5B6LxQ_D62mfPZX'
+  // TODO: fill after pool provisioning (M3)
+  'PENDING_POOL_ANON_KEY'
 setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
 
 // --- Auth (ONE shared mock adapter — the linchpin) -------------------------
