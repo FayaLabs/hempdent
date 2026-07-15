@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Env (keep .env.example) — fayz editor injects secrets at runtime
+.env
+.env.*
+!.env.example
