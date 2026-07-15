@@ -26,6 +26,7 @@ import {
   HEMPDENT_POSTS,
   HEMPDENT_REVIEWS,
   REVIEW_SUMMARY,
+  HEMPDENT_SERVICES,
 } from './seeds'
 
 /** Where the header's "área do cliente" / "Meu painel" links point. */
@@ -92,7 +93,7 @@ const payments = createPublicPaymentPlugin({ currency: 'BRL', mock: { autoPayAft
 const booking = createPublicBookingPlugin({
   tenantId: HEMPDENT_TENANT_ID,
   professional: { id: HEMPDENT_STAFF_ID, name: 'Dr. Hiago Benevenutti' },
-  // No static `services`: the catalog comes from Supabase (v_public_services).
+  services: HEMPDENT_SERVICES,
   // Dr. Hiago atende segunda a sábado, à tarde.
   workingHours: { daysOfWeek: [1, 2, 3, 4, 5, 6], start: '13:00', end: '19:00' },
   brand: {
