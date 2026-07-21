@@ -4,12 +4,12 @@ import path from 'path'
 import sourceId from './vite-plugin-source-id'
 
 // @fayz-ai/* come from published npm (node_modules) — EXCEPT plugin-blog, which
-// we resolve from the local SDK checkout (../../fayz-sdk-qa, like dentist/school)
+// we resolve from the local SDK checkout (../../fayz-sdk, like dentist/school)
 // because only that source carries createBlogPlugin({ tenantId }) + the
 // tenant-scoped Supabase provider that reads v_public_blog_posts. It imports
 // only @fayz-ai/core (node_modules) + react/router/lucide (deduped), so there is
 // no dual-core/dual-React hazard.
-const FAYZ_SDK = path.resolve(__dirname, '../../fayz-sdk-qa')
+const FAYZ_SDK = path.resolve(__dirname, '../../fayz-sdk')
 const BLOG_SRC = path.resolve(FAYZ_SDK, 'plugins/plugin-blog/src')
 
 // Resolves @fayz-ai/* from the published npm packages (node_modules). react +
