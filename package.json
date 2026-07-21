@@ -12,14 +12,14 @@
     "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
-    "@fayz-ai/auth": "^0.8.0",
-    "@fayz-ai/core": "^0.8.0",
-    "@fayz-ai/plugin-agenda": "^0.8.0",
+    "@fayz-ai/auth": "^0.8.1",
+    "@fayz-ai/core": "^0.8.1",
+    "@fayz-ai/plugin-agenda": "^0.8.1",
     "@fayz-ai/plugin-auth": "^0.8.0",
-    "@fayz-ai/plugin-blog": "^0.8.0",
+    "@fayz-ai/plugin-blog": "^0.8.1",
     "@fayz-ai/plugin-payments": "^0.8.0",
     "@fayz-ai/plugin-reputation": "^0.8.0",
-    "@fayz-ai/sdk": "^0.8.0",
+    "@fayz-ai/sdk": "^0.8.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
@@ -70,7 +70,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@fayz-ai/cli": "^0.8.0",
+    "@fayz-ai/cli": "^0.8.1",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",

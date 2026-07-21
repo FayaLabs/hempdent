@@ -24,6 +24,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@fayz-ai/plugin-blog": [
+        "../../fayz-sdk/plugins/plugin-blog/src"
       ]
     }
   },
