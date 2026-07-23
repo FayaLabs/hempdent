@@ -4,7 +4,53 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useBlogPosts, type BlogPost } from '@fayz-ai/plugin-blog'
+type BlogPost = {
+  slug: string
+  title: string
+  excerpt: string
+  tag: string
+  image: string
+  date: string
+  readTime: string
+  author: { name: string; avatarUrl?: string }
+}
+
+const MOCK_POSTS: BlogPost[] = [
+  {
+    slug: 'cannabis-medicinal-dor-bucal',
+    title: 'Como a cannabis medicinal ajuda no controle da dor bucal',
+    excerpt: 'Entenda como os canabinoides atuam no sistema endocanabinoide e reduzem processos inflamatórios associados à dor orofacial.',
+    tag: 'Cannabis & Dor',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80',
+    date: '12 Jun 2025',
+    readTime: '5 min',
+    author: { name: 'Dr. Hiago Benevenutti' },
+  },
+  {
+    slug: 'bruxismo-canabidiol',
+    title: 'Bruxismo e CBD: o que a ciência diz sobre o tratamento',
+    excerpt: 'Estudos recentes apontam o canabidiol como aliado no relaxamento muscular e na redução do apertamento dentário noturno.',
+    tag: 'Bruxismo',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80',
+    date: '28 Mai 2025',
+    readTime: '4 min',
+    author: { name: 'Dr. Hiago Benevenutti' },
+  },
+  {
+    slug: 'consulta-canabica-online',
+    title: 'Como funciona uma consulta canábica online?',
+    excerpt: 'Da avaliação à prescrição: veja o passo a passo da teleconsulta com o Dr. Hiago e o que esperar do atendimento.',
+    tag: 'Teleconsulta',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    date: '10 Mai 2025',
+    readTime: '3 min',
+    author: { name: 'Dr. Hiago Benevenutti' },
+  },
+]
+
+function useBlogPosts({ limit }: { limit: number }) {
+  return { posts: MOCK_POSTS.slice(0, limit) }
+}
 
 function PostCard({ post, index }: { post: BlogPost; index: number }) {
   const ref = useRef(null)
