@@ -46,8 +46,8 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undef
 if (supabaseUrl && supabaseAnonKey) {
   setGlobalSupabaseClient(createClient(supabaseUrl, supabaseAnonKey))
 } else {
-  console.error(
-    '[website] Missing VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY — booking catalog will be unavailable.',
+  console.warn(
+    '[website] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY not set — booking will use mock data.',
   )
 }
 
