@@ -2,11 +2,22 @@
 // This is the POC data source; a real backend (Supabase/CMS/ERP) swaps in later
 // via each plugin's provider with no change to the sections or this file's shape.
 
-import type { BlogSeedPost } from '@fayz-ai/plugin-blog'
 import type { Review, ReviewSummary } from '@fayz-ai/plugin-reputation/public'
 import type { PublicService } from '@fayz-ai/plugin-agenda/public'
 
-export const HEMPDENT_POSTS: BlogSeedPost[] = [
+export interface BlogPost {
+  slug: string
+  tag: string
+  title: string
+  excerpt: string
+  readTime: string
+  date: string
+  publishedAt: string
+  image: string
+  body: string
+}
+
+export const HEMPDENT_POSTS: BlogPost[] = [
   {
     slug: 'cbd-pos-operatorio-dor-extracoes',
     tag: 'Cannabis & Odontologia',

@@ -14,7 +14,6 @@ import { Route } from 'react-router-dom'
 import { createClient } from '@supabase/supabase-js'
 import { setGlobalSupabaseClient } from '@fayz-ai/core'
 import { CreditCard, MapPin, Video } from 'lucide-react'
-import { createBlogPlugin } from '@fayz-ai/plugin-blog'
 import { createMockReputationProvider, createReputationWebsite } from '@fayz-ai/plugin-reputation/public'
 import { createPublicBookingPlugin } from '@fayz-ai/plugin-agenda/public'
 import { createPublicPaymentPlugin } from '@fayz-ai/plugin-payments/public'
@@ -23,7 +22,6 @@ import { AuthModalProvider, phoneToEmail } from '@fayz-ai/plugin-auth/website'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import {
-  HEMPDENT_POSTS,
   HEMPDENT_REVIEWS,
   REVIEW_SUMMARY,
   HEMPDENT_SERVICES,
@@ -59,26 +57,6 @@ if (supabaseUrl && supabaseAnonKey) {
 export const authAdapter = createMockAuthAdapter()
 
 // --- Plugin instances (seeded; mock providers until a real backend is wired) ---
-
-// Blog is UNMOCKED: posts come from Supabase (anon-safe view v_public_blog_posts)
-// scoped to this tenant. createBlogPlugin's safe resolver picks the Supabase
-// provider when a global client is registered (it is — for booking, above) and
-// a tenantId is given; if the view is empty/unreachable it degrades to the
-// HEMPDENT_POSTS seed. The backoffice (DentalSoft › Marketing › Blog) writes to
-// plg_blog_posts for this same tenant.
-const blog = createBlogPlugin({
-  tenantId: HEMPDENT_TENANT_ID,
-  // Seed kept as the offline/empty fallback (safe resolver → mock provider).
-  seed: { posts: HEMPDENT_POSTS },
-  // Default byline author (Medium-inspired) — applied to posts without their own.
-  defaultAuthor: {
-    name: 'Thiago',
-    role: 'Cirurgião-Dentista · Odontologia Canábica',
-    avatarUrl: 'https://ksaxihqupvvhdbfqbbwx.supabase.co/storage/v1/object/public/avatars/43ebd04a-a4ff-4738-840d-544ebf4831b6.png?1704878851020',
-    bio: 'Especialista em odontologia canábica, une formação técnica de excelência com uma abordagem humanizada e integrativa.',
-  },
-  labels: { listTitle: 'Blog', listSubtitle: 'Conteúdo que educa e transforma' },
-})
 
 const reputation = createReputationWebsite({
   dataProvider: createMockReputationProvider({ seed: { reviews: HEMPDENT_REVIEWS, summary: REVIEW_SUMMARY } }),
@@ -131,7 +109,7 @@ const booking = createPublicBookingPlugin({
 })
 
 /** Every website plugin the host mounts. Order = provider nesting order. */
-export const websitePlugins = [blog, reputation, payments, booking]
+export const websitePlugins = [reputation, payments, booking]
 
 // --- Host glue -------------------------------------------------------------
 
