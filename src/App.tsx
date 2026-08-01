@@ -5,6 +5,8 @@ import { TooltipProvider } from '@radix-ui/react-tooltip'
 import Index from '@/pages/Index'
 import NotFound from '@/pages/NotFound'
 import Painel from '@/pages/Painel'
+import Blog from '@/pages/Blog'
+import BlogPost from '@/pages/BlogPost'
 import { WebsitePluginProvider, getWebsitePluginRoutes, SiteChrome } from './plugins.generated'
 
 function ScrollToTop() {
@@ -35,6 +37,9 @@ export default function App() {
             {getWebsitePluginRoutes()}
             {/* Host route: área do cliente stub, inside the site chrome. */}
             <Route path="/painel" element={<SiteChrome><Painel /></SiteChrome>} />
+            {/* Blog: lista e detalhe de artigos, usando os dados seedados. */}
+            <Route path="/blog" element={<SiteChrome><Blog /></SiteChrome>} />
+            <Route path="/blog/:slug" element={<SiteChrome><BlogPost /></SiteChrome>} />
             <Route path="/*" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
